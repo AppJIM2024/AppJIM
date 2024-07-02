@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App JIM</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="scrh1.css">
+</head>
+<body>
+    <div class="sidenav" id="sidebar">
+        <img src="../LogoMarista.png" alt="Logo Marista" class="logo" id="toggleBtn">
+        <div class="links">
+            <a href="../time.html">Tabela</a>
+            <a href="../index.html">Regulamento</a>
+            <a href="../scoreboard.html">Placar</a>
+            <a href="../historic.html">Histórico</a>
+            <a href="../summary.html">Resultado</a>
+            <a href="#" onclick="toggleEditMenu()">Editar Jogos</a>
+        </div>
+    </div>
+
+    <div class="main" id="main">
+        <a style="font-size: 50px;" href="../summary.html" class="scrh1">FUTSAL</a>
+        <div class="games">
+            <div id="jogo1" data-target="game1">
+                <h2>Jogo 1</h2>
+                <p>3A x 1B</p>
+            </div>
+            <div id="jogo2" data-target="game2">
+                <h2>Jogo 2</h2>
+                <p>3B x 2C</p>
+            </div>
+            <div id="jogo3" data-target="game3">
+                <h2>Jogo 3</h2>
+                <p>3C x 2B</p>
+            </div>
+            <div id="jogo4" data-target="game4">
+                <h2>Jogo 4</h2>
+                <p>1A x 2A</p>
+            </div>
+            <div id="jogo5" data-target="game5">
+                <h2>Jogo 5</h2>
+                <p>VENC. JOGO 1 X VENC. JOGO 2</p>
+            </div>
+            <div id="jogo6" data-target="game6">
+                <h2>Jogo 6</h2>
+                <p>VENC. JOGO 3 X VENC. JOGO 4</p>
+            </div>
+            <div id="jogo7" data-target="game7">
+                <h2>Jogo 7</h2>
+                <p>VENC. JOGO 5 X VENC. JOGO 6</p>
+            </div>
+        </div>
+        <div class="gameblock">
+            <div class="game" id="game1">
+                <h2 id="game1-title">Jogo 1</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game2">
+                <h2 id='game2-title'>Jogo 2</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game3">
+                <h2 id='game3-title'>Jogo 3</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game4">
+                <h2 id='game4-title'>Jogo 4</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game5">
+                <h2 id='game5-title'>Jogo 5</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game6">
+                <h2 id='game6-title'>Jogo 6</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+            <div class="game" id="game7">
+                <h2 id='game7-title'>Jogo 7</h2>
+                <p>Resultado:</p>
+                <p>Advertências:</p>
+                <p>Expulsões:</p>
+                <p>Pontuação ganha:</p>
+            </div>
+        </div>
+        <div class="edit-game" id="editGameMenu" style="display: none;">
+            <h2>Editar Jogo</h2>
+            <div>
+                <label for="gameSelect">Selecione o Jogo:</label>
+                <select id="gameSelect">
+                    <option value="game1">Jogo 1</option>
+                    <option value="game2">Jogo 2</option>
+                    <option value="game3">Jogo 3</option>
+                    <option value="game4">Jogo 4</option>
+                    <option value="game5">Jogo 5</option>
+                    <option value="game6">Jogo 6</option>
+                    <option value="game7">Jogo 7</option>
+                </select>
+                | Turmas:
+                <select id="turma1Select" onchange="updateTurmaSelecionada(1)">
+                    <option value="1">1ºA</option>
+                    <option value="2">1ºB</option>
+                    <option value="3">1ºC</option>
+                    <option value="4">2ºA</option>
+                    <option value="5">2ºB</option>
+                    <option value="6">3ºA</option>
+                    <option value="7">3ºB</option>
+                </select>
+                 X 
+                 <select id="turma2Select" onchange="updateTurmaSelecionada(2)">
+                    <option value="1">1ºA</option>
+                    <option value="2">1ºB</option>
+                    <option value="3">1ºC</option>
+                    <option value="4">2ºA</option>
+                    <option value="5">2ºB</option>
+                    <option value="6">3ºA</option>
+                    <option value="7">3ºB</option>
+                </select>
+                
+            </div>
+            <p>Resultado:       <span id="turma1selecionada"></span><input type="number" id="result1"> X <span id="turma2selecionada"></span><input type="number" id="result2"></p>
+            <p>Advertências:    <span id="turma1selecionada"></span><input type="number" id="warnings1" placeholder="Advertências de turma 1"> | <span id="turma2selecionada"></span><input type="number" id="warnings2" placeholder="Advertências de turma 2"></p>
+            <p>Expulsões:       <span id="turma1selecionadaExpulsions"></span><input type="number" id="expulsions1" placeholder="Expulsões de turma 1"> | <span id="turma2selecionadaExpulsions"></span><input type="number" id="expulsions2" placeholder="Expulsões de turma 2"></p>
+            <p>Pontuação Ganha  <span id="turma1selecionadaPoints"></span><input type="number" id="points1" placeholder="Pontuação de turma 1"> | <span id="turma2selecionadaPoints"></span><input type="number" id="points2" placeholder="Pontuação de turma 2"></p>
+            <button onclick="saveGameDetails()">Salvar</button>
+        </div>
+        
+        
+        
+        
+    </div>
+    <script src="../script.js" defer> </script>
+    <script>
+        function toggleEditMenu() {
+            var editGameMenu = document.getElementById("editGameMenu");
+            if (editGameMenu.style.display === "none") {
+                editGameMenu.style.display = "block"
+                editGameMenu.scrollIntoView({ behavior: 'smooth' });;
+            } else {
+                editGameMenu.style.display = "none";
+            }
+        }
+// Função para atualizar as spans de turmas selecionadas
+function updateTurmaSelecionada(turmaNumber) {
+    var turmaSelect = document.getElementById("turma" + turmaNumber + "Select");
+    var turmaSpan = document.getElementById("turma" + turmaNumber + "selecionada");
+    var turmaResultSpan = document.getElementById("turma" + turmaNumber + "selecionadaResult");
+
+    turmaSpan.innerText = turmaSelect.options[turmaSelect.selectedIndex].text;
+    turmaResultSpan.innerText = turmaSelect.options[turmaSelect.selectedIndex].text;
+}
+
+// Função para mapear turmas para IDs específicos
+function mapTurmaToId(turma) {
+    switch (turma) {
+        case "1ºA":
+            return "ua";
+        case "1ºB":
+            return "ub";
+        case "1ºC":
+            return "uc";
+        case "2ºA":
+            return "da";
+        case "2ºB":
+            return "db";
+        case "3ºA":
+            return "ta";
+        case "3ºB":
+            return "tb";
+        default:
+            return ""; // Pode adicionar tratamento de erro se necessário
+    }
+}
+
+
+        // Função para salvar detalhes dos jogos
+        // Função para salvar detalhes dos jogos
+// Função para salvar detalhes dos jogos
+// Função para salvar detalhes dos jogos
+function saveGameDetails() {
+    var gameSelect = document.getElementById("gameSelect").value;
+    var warnings1 = document.getElementById("warnings1").value;
+    var warnings2 = document.getElementById("warnings2").value;
+    var expulsions1 = document.getElementById("expulsions1").value;
+    var expulsions2 = document.getElementById("expulsions2").value;
+    var result1 = document.getElementById("result1").value;
+    var result2 = document.getElementById("result2").value;
+    var turma1 = document.getElementById("turma1selecionada").innerText;
+    var turma2 = document.getElementById("turma2selecionada").innerText;
+    var points1 = parseInt(document.getElementById("points1").value);
+    var points2 = parseInt(document.getElementById("points2").value);
+
+    var turma1Id = mapTurmaToId(turma1);
+    var turma2Id = mapTurmaToId(turma2);
+
+    var gameDiv = document.getElementById(gameSelect);
+    var paragraphs = gameDiv.getElementsByTagName("p");
+
+    paragraphs[0].innerText = "Resultado: " + turma1 + " " + result1 + " X " + result2 + " " + turma2;
+    paragraphs[1].innerText = "Advertências: " + turma1 + " " + warnings1 + " | " + turma2 + " " + warnings2;
+    paragraphs[2].innerText = "Expulsões: " + turma1 + " " + expulsions1 + " | " + turma2 + " " + expulsions2;
+
+    var pointsParagraph = document.createElement("p");
+    pointsParagraph.innerHTML = "Pontuação ganha: <br>" +
+        "<p id='" + turma1Id + "-points'>" + turma1 + " - " + points1 + "</p>" +
+        "<p id='" + turma2Id + "-points'>" + turma2 + " - " + points2 + "</p>";
+    paragraphs[3].replaceWith(pointsParagraph);
+
+    // Atualizar pontos no Local Storage
+    var currentScore1 = parseInt(localStorage.getItem(turma1Id + "-score")) || 0;
+    var currentScore2 = parseInt(localStorage.getItem(turma2Id + "-score")) || 0;
+
+    var newScore1 = currentScore1 + points1;
+    var newScore2 = currentScore2 + points2;
+
+    localStorage.setItem(turma1Id + "-score", newScore1.toString());
+    localStorage.setItem(turma2Id + "-score", newScore2.toString());
+
+    var currentPoints1 = parseInt(localStorage.getItem(turma1Id + "-points")) || 0;
+    var currentPoints2 = parseInt(localStorage.getItem(turma2Id + "-points")) || 0;
+
+    var newPoints1 = currentPoints1 + points1;
+    var newPoints2 = currentPoints2 + points2;
+
+    localStorage.setItem(turma1Id + "-points", newPoints1.toString());
+    localStorage.setItem(turma2Id + "-points", newPoints2.toString());
+
+    var gameTitle = document.getElementById(gameSelect + "-title");
+    gameTitle.innerText = "Jogo " + gameSelect.substr(4);
+
+    var gameDetails = {
+        result1: result1,
+        result2: result2,
+        warnings1: warnings1,
+        warnings2: warnings2,
+        expulsions1: expulsions1,
+        expulsions2: expulsions2,
+        points1: points1,
+        points2: points2,
+        turma1: turma1,
+        turma2: turma2
+    };
+
+    localStorage.setItem("soccer-game" + gameSelect.substr(4), JSON.stringify(gameDetails));
+    alert("Detalhes do jogo de futsal salvos com sucesso!");
+}
+
+        // Carregar detalhes dos jogos ao carregar a página
+        document.addEventListener("DOMContentLoaded", function() {
+    var games = ["game1", "game2", "game3", "game4", "game5", "game6", "game7"];
+    games.forEach(function(game) {
+        var savedDetails = JSON.parse(localStorage.getItem("soccer-game" + game.substr(4)));
+        if (savedDetails) {
+            var gameDiv = document.getElementById(game);
+            var paragraphs = gameDiv.getElementsByTagName("p");
+            var gameTitle = document.getElementById(game + "-title");
+
+            paragraphs[0].innerText = "Resultado: " + savedDetails.turma1 + " " + savedDetails.result1 + " X " + savedDetails.result2 + " " + savedDetails.turma2;
+            paragraphs[1].innerText = "Advertências: " + savedDetails.turma1 + " " + savedDetails.warnings1 + " | " + savedDetails.turma2 + " " + savedDetails.warnings2;
+            paragraphs[2].innerText = "Expulsões: " + savedDetails.turma1 + " " + savedDetails.expulsions1 + " | " + savedDetails.turma2 + " " + savedDetails.expulsions2;
+
+            // Exibir pontuações ganhas
+            var pointsParagraph = document.createElement("p");
+pointsParagraph.innerHTML = "Pontuação ganha: <br>" +
+    "<p id='points1_paragraph'><span id='turma1'>" + savedDetails.turma1 + "</span> - <span>" + savedDetails.points1 + "</span> </p>" +
+    "<p id='points2_paragraph'><span id='turma2'>" + savedDetails.turma2 + "</span> - <span>" + savedDetails.points2 + "</span> </p>";
+paragraphs[3].replaceWith(pointsParagraph);
+
+            gameTitle.innerText = "Jogo " + game.substr(4); // Atualiza o título do jogo
+        }
+    });
+});
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+    var games = document.querySelectorAll(".game");
+
+    // Esconder todas as divs .game por padrão
+    games.forEach(function(game) {
+        game.style.display = "none";
+    });
+
+    // Adicionar evento de clique para mostrar a div correspondente ao jogo clicado
+    var jogos = document.querySelectorAll("[id^='jogo']");
+    jogos.forEach(function(jogo) {
+        jogo.addEventListener("click", function() {
+            var targetId = jogo.getAttribute("data-target");
+            var targetGame = document.getElementById(targetId);
+
+            // Esconder todas as divs .game antes de mostrar a selecionada
+            games.forEach(function(game) {
+                game.style.display = "none";
+            });
+
+            // Mostrar a div .game correspondente
+            targetGame.style.display = "block";
+
+            // Rolando a página para a div .game que foi mostrada
+            targetGame.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+});
+    </script>
+</body>
+</html>

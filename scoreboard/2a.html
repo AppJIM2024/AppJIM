@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ept-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App JIM</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer> </script>   
+</head>
+<body>
+    <div class="sidenav" id="sidebar">
+        <img src="../LogoMarista.png" alt="Logo Marista" class="logo" id="toggleBtn">
+        <div class="links">
+            <a href="../time.html">Tabela</a>
+            <a href="../index.html">Regulamento</a>
+            <a href="../scoreboard.html">Placar</a>
+            <a href="../historic.html">Histórico</a>
+            <a href="../summary.html">Resultado</a>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="scr1 interno" id="scr1a">
+            <div class="team1 tm" id="da">
+                <a href="../scoreboard.html">2º A</a>
+                
+                <div class="tscr interno" id="da-score">-</div>
+                <div class="pts1">
+                    <div class="gainpts block">
+                        <h1>Ganhos</h1>
+                        <div class="tpts interno" id="da-points">-</div>
+                        <div class="teamhist" id="points"></div>
+                    </div>
+                    <div class="tplt block">
+                        <h1>Penalidades</h1>
+                        <div class="tplt interno" id="da-penalty">-</div>
+                        <div class="teamhist" id="penalties"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function loadTeamHistory() {
+            var chatDiv = document.getElementById("historico");
+            var teamHistDiv = document.querySelector(".team1 #penalties.teamhist");
+            var existingMessages = JSON.parse(localStorage.getItem("chatMessages")) || {};
+            var teamId = "da"; // ID da turma 2ºA
+
+            // Exibir mensagens do histórico correspondentes à turma 2ºA
+            for (var messageId in existingMessages) {
+                if (messageId.includes(teamId)) {
+                    var p = document.createElement("p");
+                    p.id = messageId; // Definir o ID da mensagem
+                    p.innerText = existingMessages[messageId];
+                    teamHistDiv.appendChild(p);
+                }
+            }
+        }
+        window.onload = loadTeamHistory;
+    </script>
+    <script src="intscrvalues.js"></script>
+</body>
+</html>
