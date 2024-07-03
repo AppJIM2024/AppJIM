@@ -16,7 +16,6 @@
             <a href="../scoreboard.html">Placar</a>
             <a href="../historic.html">Histórico</a>
             <a href="../summary.html">Resultado</a>
-            <a href="#" onclick="toggleEditMenu()">Editar Jogos</a>
         </div>
     </div>
 
@@ -103,50 +102,6 @@
                 <p>Pontuação ganha:</p>
             </div>
         </div>
-        <div class="edit-game" id="editGameMenu" style="display: none;">
-            <h2>Editar Jogo</h2>
-            <div>
-                <label for="gameSelect">Selecione o Jogo:</label>
-                <select id="gameSelect">
-                    <option value="game1">Jogo 1</option>
-                    <option value="game2">Jogo 2</option>
-                    <option value="game3">Jogo 3</option>
-                    <option value="game4">Jogo 4</option>
-                    <option value="game5">Jogo 5</option>
-                    <option value="game6">Jogo 6</option>
-                    <option value="game7">Jogo 7</option>
-                </select>
-                | Turmas:
-                <select id="turma1Select" onchange="updateTurmaSelecionada(1)">
-                    <option value="1">1ºA</option>
-                    <option value="2">1ºB</option>
-                    <option value="3">1ºC</option>
-                    <option value="4">2ºA</option>
-                    <option value="5">2ºB</option>
-                    <option value="6">3ºA</option>
-                    <option value="7">3ºB</option>
-                </select>
-                 X 
-                 <select id="turma2Select" onchange="updateTurmaSelecionada(2)">
-                    <option value="1">1ºA</option>
-                    <option value="2">1ºB</option>
-                    <option value="3">1ºC</option>
-                    <option value="4">2ºA</option>
-                    <option value="5">2ºB</option>
-                    <option value="6">3ºA</option>
-                    <option value="7">3ºB</option>
-                </select>
-                
-            </div>
-            <p>Resultado:       <span id="turma1selecionada"></span><input type="number" id="result1"> X <span id="turma2selecionada"></span><input type="number" id="result2"></p>
-            <p>Advertências:    <span id="turma1selecionada"></span><input type="number" id="warnings1" placeholder="Advertências de turma 1"> | <span id="turma2selecionada"></span><input type="number" id="warnings2" placeholder="Advertências de turma 2"></p>
-            <p>Expulsões:       <span id="turma1selecionadaExpulsions"></span><input type="number" id="expulsions1" placeholder="Expulsões de turma 1"> | <span id="turma2selecionadaExpulsions"></span><input type="number" id="expulsions2" placeholder="Expulsões de turma 2"></p>
-            <p>Pontuação Ganha  <span id="turma1selecionadaPoints"></span><input type="number" id="points1" placeholder="Pontuação de turma 1"> | <span id="turma2selecionadaPoints"></span><input type="number" id="points2" placeholder="Pontuação de turma 2"></p>
-            <button onclick="saveGameDetails()">Salvar</button>
-        </div>
-        
-        
-        
         
     </div>
     <script src="../script.js" defer> </script>
