@@ -59,6 +59,32 @@
         }
         window.onload = loadTeamHistory;
     </script>
-    <script src="intscrvalues.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Elementos que precisam ser inicializados com localStorage
+    const elementsToInitialize = [
+        { id: 'ua-score', localStorageKey: 'ua-score' },
+        { id: 'ua-penalty', localStorageKey: 'ua-penalty', defaultValue: '-' },
+        { id: 'ua-points', localStorageKey: 'ua-points', defaultValue: '-' }
+    ];
+
+    elementsToInitialize.forEach(elem => {
+        const element = document.getElementById(elem.id);
+        if (element) {
+            const storedValue = localStorage.getItem(elem.localStorageKey);
+            if (storedValue === null) {
+                localStorage.setItem(elem.localStorageKey, elem.defaultValue);
+                element.textContent = elem.defaultValue;
+            } else {
+                element.textContent = storedValue;
+            }
+        }
+    });
+
+    // Carregar histórico de mensagens
+    loadTeamHistory();
+});
+
+    </script>
 </body>
 </html>

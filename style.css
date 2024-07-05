@@ -207,13 +207,13 @@ a:hover {
   left: 20%
 }
 #ua.tm {
-  background-color: cornflowerblue;
+  background-color: rgb(0, 89, 255);
 }
 #ub.tm {
-  background-color: greenyellow;
+  background-color: rgb(0, 224, 0);
 }
 #uc.tm {
-  background-color: palevioletred;
+  background-color: rgb(0, 0, 8);
 }
 #da.tm {
   background-color: rgb(234, 0, 255);
@@ -226,6 +226,10 @@ a:hover {
 }
 #tb.tm {
   background-color: red;
+}
+
+.tm a{
+  text-shadow: 1px 1px 4px#ffffff;
 }
 
 .interno.tscr {
@@ -339,7 +343,6 @@ a:hover {
   margin: 5px;
   border-radius: 5vh;
   height: 90vh;
-  
   box-shadow: 2px 2px 8px -1px #092c5d;
 }
 .team1 div {
@@ -369,4 +372,15 @@ a:hover {
 }
 input {
   width: 50px;
+}
+table {
+  text-align: left;
+  font-size: 24px;
+}
+.game {
+  max-width: 720px;
+  margin: auto;
+}
+.game table{
+  margin: auto;
 }

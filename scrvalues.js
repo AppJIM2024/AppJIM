@@ -80,41 +80,9 @@ function loadFromLocalStorage() {
 }
 
 
-// Adiciona um evento de clique aos elementos com a classe "tscr"
-const tscrElements = document.querySelectorAll('.tscr');
-tscrElements.forEach(element => {
-    element.addEventListener('click', () => {
-        // Abre um prompt para editar o valor
-        const newValue = prompt('Digite o novo valor:');
-        // Atualiza o valor se não for cancelado
-        if (newValue !== null) {
-            element.textContent = newValue;
-            // Armazena a nova pontuação no armazenamento local
-            const teamId = element.parentNode.parentNode.id;
-            localStorage.setItem(`${teamId}-score`, newValue);
-            updatePosition();
-        }
-    });
-});
 
 loadFromLocalStorage();
 
 updatePosition();
-// Adiciona um evento de clique aos elementos com a classe "tplt" para editar penalidades
-const tpltElements = document.querySelectorAll('.tplt');
-tpltElements.forEach(element => {
-    element.addEventListener('click', () => { const newPenalty = prompt('Digite a nova penalidade:');
-        // Atualiza o valor se não for cancelado
-        if (newPenalty !== null) {
-            element.textContent = newPenalty;
-            // Armazena a nova pontuação no armazenamento local
-            const teamId = element.parentNode.parentNode.id;
-            localStorage.setItem(`${teamId}-penalty`, newPenalty);
-            updatePosition();
-        }
-    });
-});
-
-
 // Carrega as penalidades do localStorage ao carregar a página
 loadPenaltiesFromLocalStorage();
