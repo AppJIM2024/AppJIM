@@ -11,6 +11,7 @@
             width: 360px;
         }
     </style>
+    <link rel="shortcut icon" href="marista.ico" type="image/x-icon">
 </head>
 <body>
     <h1>Pontuação, Penalidades e Histórico das Equipes</h1>
@@ -30,13 +31,6 @@
         <!-- Lista de mensagens de histórico -->
     </div>
     <button id="clearHistoryBtn">Limpar Histórico</button>
-
-    <h2>Dados dos Jogos de Futsal</h2>
-    <ul id="futsalGamesList">
-        <!-- Lista de detalhes dos jogos de futsal -->
-    </ul>
-
-    <button id="clearFutsalDataBtn">Limpar Dados de Futsal</button>
 </body>
 <script>
     // Função para carregar e exibir a pontuação e as penalidades das equipes
@@ -53,12 +47,10 @@
 
         const scoreList = document.getElementById('scoreList');
         const penaltyList = document.getElementById('penaltyList');
-        const futsalGamesList = document.getElementById('futsalGamesList');
 
         // Limpa as listas antes de adicionar novos itens
         scoreList.textContent = '';
         penaltyList.textContent = '';
-        futsalGamesList.textContent = '';
 
         // Itera sobre as equipes para exibir pontuações e penalidades
         teams.forEach(team => {
@@ -101,15 +93,6 @@
             p.innerText = chatMessages[messageId];
             historyList.appendChild(p);
         }
-
-        // Itera sobre os jogos de futsal para exibir seus detalhes
-        for (let i = 1; i <= 7; i++) { // Assume-se que há 7 jogos como no exemplo
-            const gameDetails = JSON.parse(localStorage.getItem(`game${i}_soccer`)) || {};
-
-            const gameItem = document.createElement('li');
-            gameItem.textContent = `Jogo ${i}: Resultado - ${gameDetails.result1} X ${gameDetails.result2}, Advertências - ${gameDetails.warnings1} | ${gameDetails.warnings2}, Expulsões - ${gameDetails.expulsions1} | ${gameDetails.expulsions2}`;
-            futsalGamesList.appendChild(gameItem);
-        }
     }
 
     // Função para limpar os valores numéricos e salvar em localStorage
@@ -143,18 +126,9 @@
         displayScoresPenaltiesAndHistory(); // Atualiza a exibição do histórico após a remoção
     }
 
-    // Função para limpar os dados de futsal
-    function clearFutsalData() {
-        for (let i = 1; i <= 7; i++) {
-            localStorage.removeItem(`game${i}_soccer`);
-        }
-        displayScoresPenaltiesAndHistory(); // Atualiza a exibição após a remoção dos dados de futsal
-    }
-
     // Adiciona event listeners para os botões de limpeza
     document.getElementById('clearValuesBtn').addEventListener('click', clearNumericValues);
     document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
-    document.getElementById('clearFutsalDataBtn').addEventListener('click', clearFutsalData);
 
     // Carrega e exibe a pontuação, penalidades e histórico ao carregar a página
     displayScoresPenaltiesAndHistory();

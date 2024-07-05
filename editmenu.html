@@ -9,31 +9,31 @@
     <div id="numberdiv">
         <h1>Pontuação, Penalidades e Histórico das Equipes</h1>
         <ul id="scoreList">
-            <li>1º A: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>1º B: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>1º C: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>2º A: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>2º B: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>3º A: Pontuação     - <span class='scorespan'>0</span></li>
-            <li>3º B: Pontuação     - <span class='scorespan'>0</span></li>
+            <li>1º A: Pontuação     - <span id="ua-score" class='scorespan'>10</span></li>
+            <li>1º B: Pontuação     - <span id="ub-score" class='scorespan'>20</span></li>
+            <li>1º C: Pontuação     - <span id="uc-score" class='scorespan'>30</span></li>
+            <li>2º A: Pontuação     - <span id="da-score" class='scorespan'>40</span></li>
+            <li>2º B: Pontuação     - <span id="db-score" class='scorespan'>50</span></li>
+            <li>3º A: Pontuação     - <span id="ta-score" class='scorespan'>60</span></li>
+            <li>3º B: Pontuação     - <span id="tb-score" class='scorespan'>70</span></li>
         </ul>
         <ul id="pointsList">
-            <li>1º A: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>1º B: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>1º C: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>2º A: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>2º B: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>3º A: Pontos Ganhos - <span class='pointsspan'>0</span></li>
-            <li>3º B: Pontos Ganhos - <span class='pointsspan'>0</span></li>
+            <li>1º A: Pontos Ganhos - <span id="ua-points" class='pointsspan'>10</span></li>
+            <li>1º B: Pontos Ganhos - <span id="ub-points" class='pointsspan'>20</span></li>
+            <li>1º C: Pontos Ganhos - <span id="uc-points" class='pointsspan'>40</span></li>
+            <li>2º A: Pontos Ganhos - <span id="da-points" class='pointsspan'>50</span></li>
+            <li>2º B: Pontos Ganhos - <span id="db-points" class='pointsspan'>60</span></li>
+            <li>3º A: Pontos Ganhos - <span id="ta-points" class='pointsspan'>70</span></li>
+            <li>3º B: Pontos Ganhos - <span id="tb-points" class='pointsspan'>80</span></li>
         </ul>
         <ul id="penaltyList">
-            <li>1º A: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>1º B: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>1º C: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>2º A: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>2º B: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>3º A: Penalidade    - <span class='penaltyspan'>0</span></li>
-            <li>3º B: Penalidade    - <span class='penaltyspan'>0</span></li>
+            <li>1º A: Penalidade    - <span id="ua-penalty" class='penaltyspan'>10</span></li>
+            <li>1º B: Penalidade    - <span id="ub-penalty" class='penaltyspan'>20</span></li>
+            <li>1º C: Penalidade    - <span id="uc-penalty" class='penaltyspan'>30</span></li>
+            <li>2º A: Penalidade    - <span id="da-penalty" class='penaltyspan'>40</span></li>
+            <li>2º B: Penalidade    - <span id="db-penalty" class='penaltyspan'>50</span></li>
+            <li>3º A: Penalidade    - <span id="ta-penalty" class='penaltyspan'>60</span></li>
+            <li>3º B: Penalidade    - <span id="tb-penalty" class='penaltyspan'>70</span></li>
         </ul>
         <!-- Botão para limpar os valores numéricos -->
         <button id="clearValuesBtn">Limpar Valores Numéricos</button>
@@ -48,5 +48,70 @@
     <button id="clearFutsalDataBtn">Limpar Dados de Futsal</button>
 </body>
 <script>
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Função para obter valores do Menu de Edição e salvar no localStorage
+        function saveDataToLocalStorage() {
+            const teams = [
+                { id: 'ua', name: '1º A' },
+                { id: 'ub', name: '1º B' },
+                { id: 'uc', name: '1º C' },
+                { id: 'da', name: '2º A' },
+                { id: 'db', name: '2º B' },
+                { id: 'ta', name: '3º A' },
+                { id: 'tb', name: '3º B' }
+            ];
+    
+            teams.forEach(team => {
+                const teamId = team.id;
+    
+                // Obtém valores dos elementos de pontuação, pontos ganhos e penalidade
+                const score = parseInt(document.getElementById(`${teamId}-score`).innerText);
+                const points = parseInt(document.getElementById(`${teamId}-points`).innerText);
+                const penalty = parseInt(document.getElementById(`${teamId}-penalty`).innerText);
+    
+                // Salva os valores no localStorage
+                localStorage.setItem(`${teamId}-score`, score);
+                localStorage.setItem(`${teamId}-points`, points);
+                localStorage.setItem(`${teamId}-penalty`, penalty);
+            });
+        }
+    
+        // Função para limpar os dados numéricos do Menu de Edição e do localStorage
+        function clearFutsalData() {
+            const teams = [
+                { id: 'ua', name: '1º A' },
+                { id: 'ub', name: '1º B' },
+                { id: 'uc', name: '1º C' },
+                { id: 'da', name: '2º A' },
+                { id: 'db', name: '2º B' },
+                { id: 'ta', name: '3º A' },
+                { id: 'tb', name: '3º B' }
+            ];
+    
+            teams.forEach(team => {
+                const teamId = team.id;
+    
+                // Define os valores para 0 no Menu de Edição
+                document.getElementById(`${teamId}-score`).innerText = '0';
+                document.getElementById(`${teamId}-points`).innerText = '0';
+                document.getElementById(`${teamId}-penalty`).innerText = '0';
+    
+                // Define os valores para 0 no localStorage
+                localStorage.setItem(`${teamId}-score`, 0);
+                localStorage.setItem(`${teamId}-points`, 0);
+                localStorage.setItem(`${teamId}-penalty`, 0);
+            });
+    
+            // Limpa o histórico
+            clearHistory();
+        }
+    
+        // Adiciona event listener para o botão de limpar dados do Menu de Edição
+        document.getElementById('clearFutsalDataBtn').addEventListener('click', clearFutsalData);
+    
+        // Carrega os dados iniciais do Menu de Edição para o localStorage
+        saveDataToLocalStorage();
+    });
+    </script>
+    
 </html>
