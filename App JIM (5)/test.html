@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Pontuação, Penalidades e Histórico</title>
+    <style>
+        .hst {
+            height: 240px;
+            overflow-y: auto;
+            width: 360px;
+        }
+    </style>
+    <link rel="shortcut icon" href="marista.ico" type="image/x-icon">
+</head>
+<body>
+    <h1>Pontuação, Penalidades e Histórico das Equipes</h1>
+    <ul id="scoreList">
+        <!-- Lista de pontuações das equipes -->
+    </ul>
+
+    <ul id="penaltyList">
+        <!-- Lista de penalidades das equipes -->
+    </ul>
+
+    <!-- Botão para limpar os valores numéricos -->
+    <button id="clearValuesBtn">Limpar Valores Numéricos</button>
+
+    <h2>Histórico</h2>
+    <div id="historyList" class="hst">
+        <!-- Lista de mensagens de histórico -->
+    </div>
+    <button id="clearHistoryBtn">Limpar Histórico</button>
+</body>
+<script>
+    // Função para carregar e exibir a pontuação e as penalidades das equipes
+    function displayScoresPenaltiesAndHistory() {
+        const teams = [
+            { id: 'ua', name: '1º A' },
+            { id: 'ub', name: '1º B' },
+            { id: 'uc', name: '1º C' },
+            { id: 'da', name: '2º A' },
+            { id: 'db', name: '2º B' },
+            { id: 'ta', name: '3º A' },
+            { id: 'tb', name: '3º B' }
+        ];
+
+        const scoreList = document.getElementById('scoreList');
+        const penaltyList = document.getElementById('penaltyList');
+
+        // Limpa as listas antes de adicionar novos itens
+        scoreList.textContent = '';
+        penaltyList.textContent = '';
+
+        // Itera sobre as equipes para exibir pontuações e penalidades
+        teams.forEach(team => {
+            const teamId = team.id;
+            const teamName = team.name;
+
+            // Obter pontuação da equipe
+            const score = localStorage.getItem(`${teamId}-score`) || 0;
+
+            // Obter penalidade da equipe
+            const penalty = localStorage.getItem(`${teamId}-penalty`) || 0;
+
+            // Obter Pontos Ganhos da equipe
+            const points = localStorage.getItem(`${teamId}-points`) || 0;
+
+            // Criar elementos de lista para exibir pontuação, penalidade e Pontos Ganhos
+            const scoreItem = document.createElement('li');
+            scoreItem.textContent = `${teamName}: Pontuação - ${score}`;
+            scoreList.appendChild(scoreItem);
+
+            const penaltyItem = document.createElement('li');
+            penaltyItem.textContent = `${teamName}: Penalidade - ${penalty}`;
+            penaltyList.appendChild(penaltyItem);
+
+            const pointsItem = document.createElement('li');
+            pointsItem.textContent = `${teamName}: Pontos Ganhos - ${points}`;
+            scoreList.appendChild(pointsItem); // Adiciona os pontos adicionais na lista de pontuações
+        });
+
+        // Exibir histórico
+        var historyList = document.getElementById('historyList');
+        var chatMessages = JSON.parse(localStorage.getItem("chatMessages")) || {};
+
+        // Limpar a lista de histórico antes de adicionar novos itens
+        historyList.innerHTML = '';
+
+        // Exibir as mensagens de histórico
+        for (var messageId in chatMessages) {
+            var p = document.createElement("p");
+            p.innerText = chatMessages[messageId];
+            historyList.appendChild(p);
+        }
+    }
+
+    // Função para limpar os valores numéricos e salvar em localStorage
+    function clearNumericValues() {
+        const teams = [
+            { id: 'ua', name: '1º A' },
+            { id: 'ub', name: '1º B' },
+            { id: 'uc', name: '1º C' },
+            { id: 'da', name: '2º A' },
+            { id: 'db', name: '2º B' },
+            { id: 'ta', name: '3º A' },
+            { id: 'tb', name: '3º B' }
+        ];
+
+        // Itera sobre as equipes para limpar os valores numéricos
+        teams.forEach(team => {
+            const teamId = team.id;
+
+            // Define os valores para 0
+            localStorage.setItem(`${teamId}-score`, 0);
+            localStorage.setItem(`${teamId}-penalty`, 0);
+            localStorage.setItem(`${teamId}-points`, 0);
+        });
+
+        // Atualiza a exibição das pontuações, penalidades e pontos adicionais
+        displayScoresPenaltiesAndHistory();
+    }
+
+    function clearHistory() {
+        localStorage.removeItem("chatMessages");
+        displayScoresPenaltiesAndHistory(); // Atualiza a exibição do histórico após a remoção
+    }
+
+    // Adiciona event listeners para os botões de limpeza
+    document.getElementById('clearValuesBtn').addEventListener('click', clearNumericValues);
+    document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
+
+    // Carrega e exibe a pontuação, penalidades e histórico ao carregar a página
+    displayScoresPenaltiesAndHistory();
+</script>
+</html>
